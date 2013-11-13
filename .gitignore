@@ -1,4 +1,7 @@
 *.class
+*.bluej
+*.defs
+*.ctxt
 
 # Package Files #
 *.jar
