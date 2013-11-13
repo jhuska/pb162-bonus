@@ -1,5 +1,6 @@
 pb162-bonus
 ===========
+![](http://www.kent.ac.uk/careers/pics/psychologist.gif)
 
 ##Informácie:
 
