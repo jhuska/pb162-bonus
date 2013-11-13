@@ -23,6 +23,7 @@ pb162-bonus
 * Odporúčam sa naučiť pracovať s pull request mechanizmom a gitom samotným, je to momentálne mainstream a určite príde vhod ako dobrá referencia pri pohovore.
 * [Tu]("https://confluence.atlassian.com/display/STASH/Basic+Git+commands") možete nájsť pár git príkazov.
 * Pull request odporúčam hlavne pretože Vám dokážem tak dať okamžitý a presnejší feedback k Vašemu kódu.
+* Projekt môžete vypracovávať aj v BlueJ. Otvoríte ho pomocou menu: *Project --> Open Non Bjuej*
 
 ##Zadania jednotlivých úloh:
 
