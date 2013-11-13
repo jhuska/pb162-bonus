@@ -27,6 +27,6 @@ pb162-bonus
 
 ### 1.
 
-* Poskytnite implementáciu pre triedy: ``AutomaticPsychiatrist.java``, ``TextAnalyzer.java``.
+* Poskytnite implementáciu pre rozhrania: ``AutomaticPsychiatrist.java``, ``TextAnalyzer.java``.
 * Viacej info v ich JAVA docs.
 * Hints: ``System.currentTimeMillis`` a metódy triedy ``String`` prídu vhod.
