@@ -20,12 +20,13 @@ public interface TextAnalyzer
     * <pre>
     * String[] somePossibilities = {"How are you ? - Great, thanks mate!", "How you been ? - Fine mate!", "How are you doing ? - I am fine."}
     * TextAnalyzer analyzer = new TextAnalyzerImpl();
-    * analyzer.getBestAnswer("How are you doing ?", somePossibilities); //would return "I am fine."
+    * analyzer.getBestAnswer("How are you dude ?", somePossibilities); //would return "I am fine."
     * </pre>
     * 
     * @param input                     the question which was asked
     * @parem possibleInputsAndAnswers  array with possible questions and answers
     * @return                          the answer for the most similar question as <code>input</code>. If there is no such question, the string "I am tired, bye for now" is returned.
+    *                                  if there is more the first one is returned
     */
    String getBestAnswer(String input, String[] possibleInputsAndAnswers);
 }
