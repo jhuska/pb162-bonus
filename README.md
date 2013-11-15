@@ -4,7 +4,6 @@ pb162-bonus
 
 ##Informácie:
 
-* vypracovanie odovzdať vždy do Nedele 12:00
 * vypracovanie posielať buď ako:
  * pull request k tomuto repozitáru
  * alebo ako exportované jarko odovzdané do odovzávarne s názvom bonus-projektik.
