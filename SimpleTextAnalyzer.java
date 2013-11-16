@@ -1,4 +1,7 @@
 
+/**
+ * @author Karel Vaculik
+ */
 public class SimpleTextAnalyzer implements TextAnalyzer {
 	
 	public String getBestAnswer(String input, String[] possibleInputsAndAnswers) {
