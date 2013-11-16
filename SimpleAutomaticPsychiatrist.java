@@ -1,4 +1,7 @@
 
+/**
+ * @author Karel Vaculik
+ */
 public class SimpleAutomaticPsychiatrist implements AutomaticPsychiatrist {
 	
 	private long thinkingTimeout;
