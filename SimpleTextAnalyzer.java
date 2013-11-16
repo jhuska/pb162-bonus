@@ -1,5 +1,3 @@
-package project_Eliza;
-
 
 public class SimpleTextAnalyzer implements TextAnalyzer {
 	

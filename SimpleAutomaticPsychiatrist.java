@@ -1,4 +1,3 @@
-package project_Eliza;
 
 public class SimpleAutomaticPsychiatrist implements AutomaticPsychiatrist {
 	
