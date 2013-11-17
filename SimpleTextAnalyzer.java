@@ -35,7 +35,7 @@ public class SimpleTextAnalyzer implements TextAnalyzer {
 	 */
 	private int compareInputs(String baseInput, String searchedQuestion) {
 		
-		final String WORD_SEP_REGEX = "[^\\p{Alnum}]*";
+		final String WORD_SEP_REGEX = "[^\\p{Alnum}]+";
 		String[] baseInpWords = baseInput.split(WORD_SEP_REGEX);
 		String[] searchedQstWords = searchedQuestion.split(WORD_SEP_REGEX);
 		
@@ -56,10 +56,10 @@ public class SimpleTextAnalyzer implements TextAnalyzer {
 	 * Finds out if a second sequence of words is subsequence of a first sequence of words
 	 * from gived index
 	 * 
-	 * @param baseSeq		The first sequence of words
-	 * @param subseq		The second sequence of words
+	 * @param baseSeq	The first sequence of words
+	 * @param subseq	The second sequence of words
 	 * @param startingIdx	The starting index
-	 * @return				True if is subsequence
+	 * @return		True if is subsequence
 	 */
 	private boolean isSubsequence(String[] baseSeq, String[] subseq, int startingIdx) {
 		
