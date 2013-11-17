@@ -1,0 +1,304 @@
+/**
+ * Class for giving the best answer for a question.
+ * 
+ * @author Adam Brenkus
+ */
+public class UltraEffectiveAnsweringMachine implements TextAnalyzer{
+    /**
+     * Debug level ~ the higher the level the more info is printed
+     */
+    private static final int debugDump = 0; 
+    /**
+     * Word tolerance while using wordBasedSearch() in percent, choose integer value between 0 and 100
+     */
+    private static final int wordBasedSearchTolerancePercent = 20;
+    /**
+     * Character tolerance while using wordBasedSearch() in percent, choose integer value between 0 and 100
+     */
+    private static final int wordBasedSearchToleranceCharacterPercent = 30;
+    
+    /**
+     * Choses the best fitting answer to given question
+     * 
+     * @param   input                       asked question
+     * @param   possibleInputsAndAnswers    array containing lines in 'question' - 'answer' format
+     */
+    public String getBestAnswer(String input, String[] possibleInputsAndAnswers){
+        String answer;
+        int rightQuestionIndex;
+        
+        String[] questions = getQuestions(possibleInputsAndAnswers);
+        
+        rightQuestionIndex = wordBasedSearch(input, questions);
+        
+        if(rightQuestionIndex >= 0) return getAnswer(possibleInputsAndAnswers[rightQuestionIndex]);
+        
+        //if word based search fails use less effective frequency search instead
+        rightQuestionIndex = frequencyBasedSearch(input, questions);
+        
+        return getAnswer(possibleInputsAndAnswers[rightQuestionIndex]);
+    }
+    
+    /**
+     * Return letter frequencies in an array
+     * 
+     * @param   input   string to read frequencies from
+     * @return          frequencies
+     */
+    private static int[] getFrequencies(String input){
+        int[] freqs = new int[128];
+        
+        for(int i = 0; i < 128; ++i)  freqs[i] = 0;
+        
+        for(int i = 0; i < input.length(); ++i){
+            freqs[input.charAt(i)] ++;
+        }
+        
+        return freqs;
+    }
+    
+    /**
+     * Calculates total frequency difference between frequency array and string
+     * 
+     * @param   inputFreqs  frequency array
+     * @param   question    string to compare
+     * @return              total difference in character frequency
+     */
+    private static int getFreqDif(int[] inputFreqs, String question){
+        if(debugDump > 0) System.out.println("Calculating frequency differences for single question...");
+        int[] questionFreqs = getFrequencies(question);
+        int totalDifference = 0;
+        
+        for(int i = 0; i < 128; ++i){
+            totalDifference += Math.abs(questionFreqs[i] - inputFreqs[i]);
+            if(debugDump > 1) System.out.println("totalDif = " + totalDifference + " at char: " + (char)i);
+        }
+        
+        if(debugDump > 0) System.out.println("totalDifference: " + totalDifference);
+        return totalDifference;
+    }
+    
+    /**
+     * This method calculates frequencies of each letter in given lines and matches input string to
+     * most simillar question.
+     * 
+     * @param   input       input line
+     * @param   questions   questions to choose from
+     */
+    private static int frequencyBasedSearch(String input, String[] questions){
+        int[] freqs = getFrequencies(input);
+        int[] freqDifs = new int[questions.length];
+        
+        for(int i = 0; i < questions.length; ++i){
+            freqDifs[i] = getFreqDif(freqs, questions[i]);
+        }
+        
+        System.out.println(getMinimumIndex(freqDifs));
+        return getMinimumIndex(freqDifs);
+    
+    }
+    
+    /**
+     * Extract answer from questionAndAnswer line (separated by " - " string)
+     * 
+     * @param   questionAndAnswe    line to extract answer from
+     * @return                      extracted answer
+     */
+    private static String getAnswer(String questionAndAnswer){
+        int firstOccurenceIndex = questionAndAnswer.indexOf(" - ");
+        if(firstOccurenceIndex < 0) throw new IllegalArgumentException("questionAndAnswer does not contain \" - \" substring.");
+            
+        return questionAndAnswer.substring(firstOccurenceIndex+3, questionAndAnswer.length());
+    }
+    
+    /**
+     * Extracts questions from text (separated from answers by '-' character)
+     * 
+     * @param   text    array of lines to extract from
+     * @return          array of extracted questions
+     */
+    private static String[] getQuestions(String[] text){
+        if(debugDump > 4) System.out.println("Attempting to extract questions from given text...");
+        String[] result = new String[text.length];
+        for(int i = 0; i < text.length; ++i){
+            int firstOccurenceIndex = text[i].indexOf(" - ");
+            if(firstOccurenceIndex < 0) throw new IllegalArgumentException("text[" + i + "] does not contain \" - \" substring.");
+            
+            result[i] = text[i].substring(0, firstOccurenceIndex - 1);
+            if(debugDump > 4) System.out.println("result[" + i + "] = " + result[i]);
+        }
+        return result;
+    }
+    
+    /**
+     * Extracts words from line (separated by ' ' character)
+     * 
+     * @param   text    line to extract from
+     * @return          array of words
+     */
+    private static String[] getWords(String text){
+        if(debugDump > 3) System.out.println("Attempting to extract words out of line...");
+        int length = getWordCount(text);
+        if(length < 1) return null;
+        
+        String[] words = new String[length];
+        
+        if(length < 2){
+            words[0] = text;
+            return words;
+        }
+        
+        int wordEnd = 0;
+        int wordStart = 0;
+        
+        for(int i = 0; i < length; ++i){
+            int tmpEndIndex = text.indexOf(' ', wordEnd);
+            if(tmpEndIndex < 0) throw new RuntimeException("getWords(): differences in word seperators, probably wrong getWordCount() result.");
+            
+            wordStart = wordEnd;
+            wordEnd = tmpEndIndex + 1;
+            
+            words[i] = text.substring(wordStart, wordEnd);
+            if(debugDump > 3) System.out.println("words[" + i + "] = " + words[i]);
+        }
+        
+        return words;
+    }
+    
+    
+    /**
+     * Calculates word count in given text (line), words are separated by spaces
+     * 
+     * @param   text    text to count words in
+     * @return          word count
+     */
+    private static int getWordCount(String text){
+        int wordEnd = text.indexOf(' ');
+        
+        if(wordEnd < 0){
+            if(text.length() > 0) return 1;
+            else return 0;
+        }
+        
+        int count = 0;
+        
+        do{
+            count ++;
+            wordEnd = text.indexOf(' ', wordEnd + 1);
+        }
+        while(wordEnd >= 0);
+        
+        if(debugDump > 3) System.out.println("Word count = " + count);
+        return count;
+    }
+    
+    /**
+     * Calculates character matches between two strings
+     * 
+     * @param   one     first string to compare
+     * @param   two     second string to compare
+     * @return          number of matched characters
+     */
+    private static int charMatches(String o, String t){
+        String one = o.trim();
+        String two = t.trim();
+        //Does not consider word prefixes, for instance comparing words "foobar" and "bar" returns 0
+        //On the other hand comparing "foobar" with "foo" returns 3 (sufixes are not overlooked)
+        //--maybe implement prefixes later?
+        
+        String shorter = (one.length() < two.length()) ? one : two;
+        String longer = (one == shorter) ? two : one;
+        int lengthDif = longer.length() - shorter.length();
+        int matches = 0;
+        
+        for(int i = 0; i < shorter.length(); ++i){
+            if(one.charAt(i) == two.charAt(i)) matches ++;
+        }
+        
+        return matches;
+    }
+    
+    /**
+     * Selects maximum integer value from array and returns its index
+     * 
+     * @param   numbers     array of integers to select from
+     * @return              index of maximal integer
+     */
+    private static int getMaximumIndex(int[] numbers){
+        int maxNum = -1;
+        int maxNumIndex = -1;
+        for(int i = 0; i < numbers.length; ++i){
+            if(maxNum < numbers[i]){
+                maxNum = numbers[i];
+                maxNumIndex = i;
+            }
+        }
+        return maxNumIndex;
+    }
+    
+    /**
+     * Selects minimum integer value from array and returns its index
+     * 
+     * @param   numbers     array of integers to select from
+     * @return              index of minimal integer
+     */
+    private static int getMinimumIndex(int[] numbers){
+        int minNum = numbers[0];
+        int minNumIndex = 0;
+        for(int i = 1; i < numbers.length; ++i){
+            if(minNum > numbers[i]){
+                minNum = numbers[i];
+                minNumIndex = i;
+            }
+        }
+        return minNumIndex;
+    }
+    
+    /**
+     * Compares all words in each question with input string and selects the most fitting question.
+     * Word positions are not taken in account (e.g. "foo bar" gives the same result as "bar foo").
+     * 
+     * @param   input       input being matched to question
+     * @param   questions   question array to look in
+     * @return              index of selected question
+     */
+    private static int wordBasedSearch(String input, String[] questions){
+        int[] matches = new int[questions.length];
+        
+        int wordCount = getWordCount(input);
+        String[] words = getWords(input);
+        
+        int minimalWordMatchesNeeded = (wordCount * (100 - wordBasedSearchTolerancePercent))/100;
+        
+        for(int i = 0; i < questions.length; ++i){
+            matches[i] = 0;
+            int questionWordCount = getWordCount(questions[i]);
+            String[] questionWords = getWords(questions[i]);
+            
+            
+            for(int j = 0; j < wordCount; ++j){
+                int minimalCharacterMatchesNeeded = ((words[j].trim().length()) * (100 - wordBasedSearchToleranceCharacterPercent))/100;
+                
+                for(int k = 0; k < questionWordCount; ++k){
+                    if(debugDump > 2) System.out.println("  Finding matches between two words - match values: "
+                                                            + (charMatches(questionWords[k], words[j])) + " / "
+                                                            + minimalCharacterMatchesNeeded                     );
+                    if(debugDump > 2) System.out.println("words: " + questionWords[k] + ", " + words[j]);
+                    if(charMatches(questionWords[k], words[j]) >= minimalCharacterMatchesNeeded){
+                        matches[i] ++;
+                        break;
+                    }
+                }
+            }
+            if(debugDump > 2) System.out.println("Total matches in questions[" + i + "]: " + matches[i]);
+        }
+        
+        int maxMatch = getMaximumIndex(matches);
+        if(debugDump > 2) System.out.println("Final maximum word matches: " + matches[maxMatch] + " / " + minimalWordMatchesNeeded + "... at index " + maxMatch);
+        if(debugDump > 2) System.out.println("Chosen question match is: " + questions[maxMatch]);
+        return (matches[maxMatch] < minimalWordMatchesNeeded) ? -1 : maxMatch; 
+    }
+    
+    
+    
+}
