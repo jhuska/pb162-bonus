@@ -1,4 +1,3 @@
-
 /**
  * @author Karel Vaculik
  */
@@ -29,9 +28,10 @@ public class SimpleTextAnalyzer implements TextAnalyzer {
 	/**
 	 * Checks if a base input includes a searched question
 	 * 
-	 * @param baseInput			The base input
+	 * @param baseInput		The base input
 	 * @param searchedQuestion	The searched question
-	 * @return					Number of words of searched question
+	 * @return			Number of words of the searched question. If the input doesn't include
+	 * 				the question returns -1
 	 */
 	private int compareInputs(String baseInput, String searchedQuestion) {
 		
