@@ -24,7 +24,6 @@ public class AutomaticPsychiatristImpl implements AutomaticPsychiatrist{
 		double estimates = thinkingTimeout;
 		 
 		while(estimates > 0) {
-		    //long millis = System.currentTimeMillis();		
 		    
 		    try {
 				Thread.sleep(1);
