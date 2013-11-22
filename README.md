@@ -54,3 +54,5 @@ pb162-bonus
    2. Získa inštanciu ``AutomaticPsychiatrist`` (už je singleton).
    3. Predstaví psychiatra volaním ``introduceMyself``.
    4. Nechá zamyslieť psychiatra. Pokiaľ by malo myslenie končiť výnimkou tak na štandarný *chybový výstup* je vypísaný reťazec: "I am sick and tired. Come later!", zároveň však program skončí s výnimkou, ktorá popíše chybový stav.
+* Vo výsledku by ste mali byť schopný spustiť program z command line napr ako: ``java -DthinkingTimeoutInMilliseconds=4000 Main "Sirius"``
+* keďže sa používané triedy nachádzajú v iných balíkoch ako metóda ``main``, bude potrebné uviesť k nim cestu pomocou prepínača *-cp*.
