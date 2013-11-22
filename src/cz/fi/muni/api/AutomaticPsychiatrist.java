@@ -7,9 +7,12 @@ package cz.fi.muni.api;
 public interface AutomaticPsychiatrist
 {
     /**
-     * Method will wait for some time. During waiting, it prints on the standard output string - "hmmm, hmmm, interesting."
+     * Method will wait for some time. 
+     * During waiting, it prints on the standard output string - 
+     * "hmmm, hmmm, interesting."
      * 
-     * The waiting period is determined by the constructor parameter <code>long thinkingTimeout</code> in miliseconds.
+     * The waiting period is determined by the constructor parameter 
+     * <code>long thinkingTimeoutInMilliseconds</code> in milliseconds.
      */
     void thinkSomeTime();
 }

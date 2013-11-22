@@ -2,6 +2,11 @@ package cz.fi.muni.test;
 
 import cz.fi.muni.impl.TextAnalyzerImpl;
 
+/**
+ * 
+ * @author Peter Koza
+ *
+ */
 public class TextAnalyzerTest {
 
 	public static void main(String[] args) {

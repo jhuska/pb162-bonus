@@ -2,6 +2,11 @@ package cz.fi.muni.test;
 
 import cz.fi.muni.impl.AutomaticPsychiatristImpl;
 
+/**
+ * 
+ * @author Juraj Huska
+ *
+ */
 public class AutomaticPsychiatristTest {
 
 	public static void main(String[] args) {
