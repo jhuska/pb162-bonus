@@ -35,10 +35,10 @@ pb162-bonus
 ### 2.
 
 * Upravte triedu ``AutomaticPsychiatristImpl.java`` tak aby v jednom behu programu existovala vždy len jedna inštancia tejto triedy.
- * Ide teda o aplikáciu desing patternu *Singleton*. Inšpirujte sa napríklad [týmto]("http://www.javaworld.com/javaworld/jw-04-2003/jw-0425-designpatterns.html?page=1") zdrojom. Stačia strany 1-2, nemusíte uvažovať viac-vláknové aplikácie.
+ * Ide teda o aplikáciu desing patternu *Singleton*. Inšpirujte sa napríklad [týmto](http://www.javaworld.com/javaworld/jw-04-2003/jw-0425-designpatterns.html?page=1) zdrojom. Stačia strany 1-2, nemusíte uvažovať viac-vláknové aplikácie.
  * Aplikujte *lazy inicializáciu*, vašu jedinú inštanciu sprístupnite pomocou metódy ``getInstance``.
  * Skúste si nájsť informácie o využití tohto patternu: jednoducho všade tam kde chcem zabezpečiť existenciu len jednej inštancie - jedno fotbalové ihrisko, jedno databázové pripojenie etc.
- * Zaujímavá knižka o návrhových vzoroch, príklady sú v Jave: [Head First Design Patterns]("http://www.amazon.com/First-Design-Patterns-Elisabeth-Freeman/dp/0596007124").
+ * Zaujímavá knižka o návrhových vzoroch, príklady sú v Jave: [Head First Design Patterns](http://www.amazon.com/First-Design-Patterns-Elisabeth-Freeman/dp/0596007124).
 
 * Predávanie parametrov programu
  * **Prví** spôsob ktorý využijete, je získavanie *System properties*. Upravte metódu ``AutomaticPsychiatristImpl#thinkSomeTime``, tak aby čas ktorý má metóda čakať získala zo systémovej premennej ``thinkingTimeoutInMilliseconds``. Hints: ``System.getProperty()``. 
