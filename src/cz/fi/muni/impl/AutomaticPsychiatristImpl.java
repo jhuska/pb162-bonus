@@ -2,8 +2,6 @@ package cz.fi.muni.impl;
 
 import java.util.concurrent.TimeUnit;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import cz.fi.muni.api.AutomaticPsychiatrist;
 import cz.fi.muni.exception.AutomaticPsychiatristException;
 
