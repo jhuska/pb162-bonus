@@ -1,4 +1,7 @@
 package cz.fi.muni.api;
+
+import cz.fi.muni.exception.AutomaticPsychiatristException;
+
 /**
  * Represents a new way of curing mental illnesses.
  * 
@@ -13,8 +16,9 @@ public interface AutomaticPsychiatrist
      * 
      * The waiting period is determined by the system property
      * <code>thinkingTimeoutInMilliseconds</code> in milliseconds.
+     * @throws AutomaticPsychiatristException 
      */
-    void thinkSomeTime();
+    void thinkSomeTime() throws AutomaticPsychiatristException;
     
     /**
      * Prints a standard introduction of this psychiatrist. The introduction has following 
