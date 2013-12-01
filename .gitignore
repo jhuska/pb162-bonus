@@ -2,6 +2,9 @@
 *.bluej
 *.defs
 *.ctxt
+*.classpath
+*.project
+*.settings
 
 # Package Files #
 *.jar
