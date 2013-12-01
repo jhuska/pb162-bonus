@@ -1,6 +1,7 @@
 package cz.fi.muni.impl;
 
 import java.util.concurrent.TimeUnit;
+
 import cz.fi.muni.api.AutomaticPsychiatrist;
 
 /**
@@ -37,9 +38,9 @@ public class AutomaticPsychiatristImpl implements AutomaticPsychiatrist {
  
         System.out.println("hmmm, hmmm, interesting.");
         try {
-            TimeUnit.MILLISECONDS.sleep(thinkingTimeout);
+          TimeUnit.MILLISECONDS.sleep(thinkingTimeout);
         } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
+          Thread.currentThread().interrupt();
         }         
     }
 

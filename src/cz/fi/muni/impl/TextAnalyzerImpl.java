@@ -1,9 +1,6 @@
-/*package cz.fi.muni.impl;
+package cz.fi.muni.impl;
 
-import cz.fi.muni.api.TextAnalyzer;*/
-
-package pb162bonus2;
-import api.TextAnalyzer;
+import cz.fi.muni.api.TextAnalyzer;
 
 /**
  * @author Lukas Budac

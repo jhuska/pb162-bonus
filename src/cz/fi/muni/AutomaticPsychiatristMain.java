@@ -1,6 +1,7 @@
 package cz.fi.muni;
 
 import cz.fi.muni.impl.*;
+
 import exception.AutomaticPsychiatristException;
 
 /**
