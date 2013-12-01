@@ -1,4 +1,5 @@
 package cz.fi.muni.api;
+
 /**
  * Represents a new way of curing mental illnesses.
  * 

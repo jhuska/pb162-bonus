@@ -7,7 +7,7 @@ import cz.fi.muni.api.TextAnalyzer;
  */
 public class TextAnalyzerImpl implements TextAnalyzer {
 
-	@Override
+@Override
 	public String getBestAnswer(String input, String[] possibleInputsAndAnswers) {
 		String inputLwcs = input.toLowerCase();
 		String[] possibleInputsAndAnswersLwcs = new String[possibleInputsAndAnswers.length];
