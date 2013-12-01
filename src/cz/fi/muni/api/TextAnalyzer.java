@@ -1,4 +1,7 @@
-package cz.fi.muni.api;
+//package cz.fi.muni.api;
+
+package api;
+
 /**
  * Class for giving the best answer for a question.
  * 

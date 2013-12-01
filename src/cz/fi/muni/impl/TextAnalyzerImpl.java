@@ -1,13 +1,16 @@
-package cz.fi.muni.impl;
+/*package cz.fi.muni.impl;
 
-import cz.fi.muni.api.TextAnalyzer;
+import cz.fi.muni.api.TextAnalyzer;*/
+
+package pb162bonus2;
+import api.TextAnalyzer;
 
 /**
  * @author Lukas Budac
  */
 public class TextAnalyzerImpl implements TextAnalyzer {
 
-	@Override
+@Override
 	public String getBestAnswer(String input, String[] possibleInputsAndAnswers) {
 		String inputLwcs = input.toLowerCase();
 		String[] possibleInputsAndAnswersLwcs = new String[possibleInputsAndAnswers.length];
