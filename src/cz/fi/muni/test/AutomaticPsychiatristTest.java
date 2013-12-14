@@ -10,8 +10,8 @@ import cz.fi.muni.impl.AutomaticPsychiatristImpl;
 public class AutomaticPsychiatristTest {
 
 	public static void main(String[] args) {
-		AutomaticPsychiatristImpl psychiatrist = new AutomaticPsychiatristImpl(5000);
-		psychiatrist.thinkSomeTime();
+		//AutomaticPsychiatristImpl psychiatrist = new AutomaticPsychiatristImpl(5000);
+		//psychiatrist.thinkSomeTime();
 		System.out.print("I am done!");
 	}
 }
