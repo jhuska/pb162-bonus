@@ -75,3 +75,4 @@ pb162-bonus
  * Odporúčam začať tutoriálom [tu](http://docs.oracle.com/javase/tutorial/essential/io/fileio.html).
  * Triedy s alternatívnym spracovaním pomenujte napríklad pridaním čísla, napr. Main2.java.
  * Je stále dobre poznať oba prístupy. Vo všeobecnosti keď píšete novú aplikáciu tak je dobré využiť pri práci zo súbormi *nio*, no stále sa stretnete s legacy kódom ktorý bude využívať *java.io* pre prácu zo súbormi.
+ * Ak máte chuť kludne pushnite aj bohatší *possibleAnswers.txt*. Fantazií sa medze nekladú.
