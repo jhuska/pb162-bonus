@@ -70,6 +70,7 @@ pb162-bonus
  * Program potom bude načítavať užívateľský vstup a podľa tohto vstupu bude odpovedať.
  * Načítavanie končí po tom čo užívateľský vstup obsahuje reťazec: "bye". Všetky operácie s reťazcami by mali byť not case-senesitive, teda nezáleží na veľkosti písmen.
  * Pre načítavanie užívateľského vstupu využite nepríklad triedu: ``java.util.Scanner``.
+ * Pre vstup využite ``System.in``. Pre výstup ``System.out``.
  * Nezabudnite písať pekne štrukturovaný kód, main musí byť čiteteľný. Dosiahnete to správnym rozdelením jednotlivých úloh medzi správne pomenované privátne statické metódy.
 * Vytvorte alternatívne spracovanie práce zo súbormi, s využitím ``java.nio.*`` balíka.
  * Odporúčam začať tutoriálom [tu](http://docs.oracle.com/javase/tutorial/essential/io/fileio.html).
