@@ -56,3 +56,22 @@ pb162-bonus
    4. Nechá zamyslieť psychiatra. Pokiaľ by malo myslenie končiť výnimkou tak na štandarný *chybový výstup* je vypísaný reťazec: "I am sick and tired. Come later!", zároveň však program skončí s výnimkou, ktorá popíše chybový stav.
 * Vo výsledku by ste mali byť schopný spustiť program z command line napr ako: ``java -DthinkingTimeoutInMilliseconds=4000 Main "Sirius"``
 * keďže sa používané triedy nachádzajú v iných balíkoch ako metóda ``main``, bude potrebné uviesť k nim cestu pomocou prepínača *-cp*.
+
+### 3.
+* Naimplementujte zvyšné metódy rozhraní ``AutomaticPsychiatrist``, ``TextAnalyzer``.
+ * Implementácia ``AutomaticPsychiatrist`` bude obsahovať inštanciu ``TextAnalyzer``. Bude využívať jej služby. Ide o vzťah  - kompozícia. Vo všeobecnosti ide o dodržiavanie pravidla v OOP: *favor composition over inheritance*
+ * ``TextAnalyzer``, snažte sa využiť už naprogramované (existuje akýsi bridge medzi kolekciami a poľom).
+ * Upravte ďalej ``TextAnalyzer``, tak že ``getBestAnswer`` vráti ``null`` ak nemôže nájsť medzi možnými otázkami zhodu. (Toto využite pri implementácií ``askQuestion``, kde vhodne na takúto situáciu zareagujte).
+ * Upravte ``AutomaticPsychiatrist``, tak aby keď nieje zadaná systémová premenná ``thinkingTimeoutInMilliseconds``, defaultne čaká 3 sekundy.
+ * Pri implementácií askQuestion využite JDK 7 vlastnosť: *try catch blok s resource statementom*. (Viac info napr. [tu](http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html))
+* Upravte triedu Main tak aby:
+ * Načítala do premennej typu ``List<String>`` možné otázky a odpovede. Čítať bude z textového súboru *possibleAnswers.txt*, ktorý sa nachádza v rovnakom balíku ako ``Main.java``. Opať nezabudnite využiť try-catch with resources (hint: ``Class.getResrouceAsStream``).
+ * Ďalej sa program predstaví a pozdraví uživateľa.
+ * Program potom bude načítavať užívateľský vstup a podľa tohto vstupu bude odpovedať.
+ * Načítavanie končí po tom čo užívateľský vstup obsahuje reťazec: "bye". Všetky operácie s reťazcami by mali byť not case-senesitive, teda nezáleží na veľkosti písmen.
+ * Pre načítavanie užívateľského vstupu využite nepríklad triedu: ``java.util.Scanner``.
+ * Nezabudnite písať pekne štrukturovaný kód, main musí byť čiteteľný. Dosiahnete to správnym rozdelením jednotlivých úloh medzi správne pomenované privátne statické metódy.
+* Vytvorte alternatívne spracovanie práce zo súbormi, s využitím ``java.nio.*`` balíka.
+ * Odporúčam začať tutoriálom [tu](http://docs.oracle.com/javase/tutorial/essential/io/fileio.html).
+ * Triedy s alternatívnym spracovaním pomenujte napríklad pridaním čísla, napr. Main2.java.
+ * Je stále dobre poznať oba prístupy. Vo všeobecnosti keď píšete novú aplikáciu tak je dobré využiť pri práci zo súbormi *nio*, no stále sa stretnete s legacy kódom ktorý bude využívať *java.io* pre prácu zo súbormi.
