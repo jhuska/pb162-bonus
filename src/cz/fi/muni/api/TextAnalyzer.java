@@ -1,4 +1,7 @@
 package cz.fi.muni.api;
+
+import java.util.List;
+
 /**
  * Class for giving the best answer for a question.
  * 
@@ -27,4 +30,6 @@ public interface TextAnalyzer
     *                                  if there is more the first one is returned
     */
    String getBestAnswer(String input, String[] possibleInputsAndAnswers);
+   
+   String getBestAnswer(String input, List<String> possibleInputsAndAnswers);
 }
