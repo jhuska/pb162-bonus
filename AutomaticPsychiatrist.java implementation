@@ -1,0 +1,32 @@
+/**
+ * Represents a new way of curing mental illnesses.
+ * 
+ * @author Adam Brenkus
+ */
+public class LazyCarl implements AutomaticPsychiatrist{
+    private long waitTime;
+    //private double timeWaited;
+
+    public LazyCarl(long thinkingTimeout){
+        this.waitTime = thinkingTimeout;
+    }
+
+    /**
+     * Makes lazy carl think. Prints his thoughts every second.
+     * He thinks for time given in waitTime variable.
+     */
+    public void thinkSomeTime(){
+        System.out.println("hmmm, hmmm, interesting.");
+        long startTime = System.currentTimeMillis();
+        long lastSec = startTime / 1000;
+        
+        while(startTime + waitTime > System.currentTimeMillis()){
+            long sec = System.currentTimeMillis() / 1000;
+            if (sec != lastSec) {
+               System.out.println("hmmm, hmmm, interesting.");
+               lastSec = sec;
+            }
+        }        
+    }
+    
+}
